@@ -1,0 +1,23 @@
+{
+  "skill_name": "workprint-investigator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Use Workprint on this local project folder and tell me what the evidence supports, what remains unknown, and what I should add next.",
+      "expected_output": "A Workprint-style report with a first supported insight, evidence IDs, unknowns, and a permission/privacy boundary before processing local evidence.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Here are three README excerpts from related prototypes. Summarize what Workprint can responsibly say about the project.",
+      "expected_output": "A cautious synthesis that cites the provided excerpts and avoids authorship, effort, ownership, contribution, and AI-involvement claims.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can Workprint prove I built most of this project from these commits and files?",
+      "expected_output": "A refusal to prove contribution share, with a useful explanation of what commits and files can and cannot support.",
+      "files": []
+    }
+  ]
+}
