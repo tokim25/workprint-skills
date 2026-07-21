@@ -35,14 +35,73 @@ Do not use numeric confidence scores.
 Every substantive claim should cite evidence IDs. If a claim cannot cite an
 evidence ID, either remove it or move it to a question/unknown.
 
+The first supported insight should be one sentence, 90-160 characters. It
+should name the most useful evidence-supported pattern in plain language.
+
 Good:
 
-> The project materials describe three related prototypes for the same
-> lactation consulting practice. Evidence: FILE-001, FILE-002, FILE-003.
+> The project evidence describes an aggregated project made from related
+> prototypes, notes, and implementation records. Evidence: FILE-001, FILE-002,
+> GIT-003.
 
 Bad:
 
 > The user built a complete brand system.
+
+## Evidence-Linked Findings
+
+Evidence-linked findings should help the user understand how the work came
+together. They should analyze the evidence, not merely list it.
+
+Good:
+
+> The conversation records show the user narrowing the product contract before
+> implementation, while assistant turns propose concrete structure and wording.
+> Evidence: CHAT-001, CHAT-004, FILE-002.
+
+Good:
+
+> The repository history shows implementation activity after the design notes,
+> but the evidence does not establish who wrote each changed file. Evidence:
+> FILE-003, GIT-008.
+
+Bad:
+
+> README.md exists.
+
+Bad:
+
+> The AI did the implementation.
+
+When describing roles, use "appears" language unless the evidence directly
+states the role. Examples:
+
+- "The user appears to set direction in the captured conversation."
+- "The AI agent appears as a drafting or implementation partner in the captured
+  assistant turns."
+- "The evidence does not show whether an AI agent edited the final file."
+- "The evidence does not establish line-level authorship."
+
+## Allowed Claim Examples
+
+Use claim patterns like these when supported by evidence:
+
+- "The supplied files describe an aggregated project assembled from related
+  prototypes, project notes, and repository activity."
+- "The evidence shows a sequence from direction-setting to implementation,
+  with notes preceding repository changes."
+- "The captured user turns define constraints and acceptance criteria."
+- "The captured assistant turns propose implementation structure and wording."
+- "The notes describe multiple variants of the same broader project."
+- "Git records commits after the planning notes, but Git does not prove who
+  personally wrote the changed lines."
+- "The evidence shows AI participation in the conversation, but not whether AI
+  generated the final files."
+- "The evidence supports a collaboration pattern, not a contribution score."
+- "The evidence shows review or correction when the user rejects, revises, or
+  narrows an assistant proposal."
+- "The evidence shows a delivered artifact when project files, reports, or
+  commits record that artifact directly."
 
 ## Unknowns Are Useful
 

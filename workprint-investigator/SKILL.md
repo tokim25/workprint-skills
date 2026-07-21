@@ -63,7 +63,7 @@ Use this structure by default:
 # Workprint
 
 ## First Supported Insight
-[One clear claim.]
+[One clear claim, 90-160 characters.]
 
 Why Workprint believes this:
 - [Evidence ID]: [short explanation]
@@ -72,7 +72,8 @@ What Workprint cannot determine:
 - [Unknown]
 
 ## What The Evidence Shows
-- [Evidence-linked finding]
+- [Evidence-linked finding that analyzes the work and helps the user
+  understand the role they and the AI agent appear to have played.]
 
 ## Evidence
 - [Evidence ID] [source/path] [short excerpt or metadata]
@@ -84,18 +85,61 @@ What Workprint cannot determine:
 - [Specific evidence that would reduce an unknown]
 ```
 
-Keep the first insight generous and understandable. Do not open with a dense
-dashboard, raw file list, or implementation explanation.
+Keep the first insight generous and understandable. It should be one sentence,
+90-160 characters, and specific enough that the user immediately understands
+what Workprint noticed. Do not open with a dense dashboard, raw file list, or
+implementation explanation.
+
+Good first insight:
+
+> The project evidence describes an aggregated project made from related
+> prototypes, notes, and implementation records.
+
+Too vague:
+
+> Workprint found evidence.
+
+Too long:
+
+> The project evidence describes a multi-phase body of work made from several
+> related prototypes, multiple implementation notes, source records, and
+> planning artifacts that may have involved AI collaboration but also includes
+> many unknowns.
+
+An evidence-linked finding should do more than restate a file name. It should
+help the user understand the work pattern while staying inside the evidence.
+
+Good evidence-linked finding:
+
+> The user appears to have set direction by naming the desired report shape and
+> acceptance boundaries, while the AI agent appears in the evidence as an
+> implementation and synthesis partner. Evidence: CHAT-002, FILE-004, GIT-007.
+
+Only say "the user appears" or "the AI agent appears" when the evidence itself
+contains user/assistant turns, tool-use records, commits, or notes that support
+that role. If role evidence is absent, say that role remains unknown.
 
 ## Claim Rules
 
 Allowed:
 
-- "The README states this is a responsive prototype for Carrie Kim's lactation
-  consulting practice."
-- "The supplied notes describe feedback coaching scenarios."
+- "The supplied files describe an aggregated project assembled from related
+  prototypes, project notes, and repository activity."
+- "The README and project notes describe three related prototype directions for
+  the same broader project."
+- "The conversation evidence shows the user setting acceptance criteria before
+  the AI agent produced implementation options."
+- "The AI agent appears in the evidence as a synthesis partner because the
+  captured assistant turns propose structure and next steps."
+- "The user appears to have directed the work when they approved the four-screen
+  flow and rejected additional setup complexity."
 - "Git records 18 commits between May 2 and May 18."
-- "The evidence does not show who wrote the files."
+- "The evidence shows implementation activity after the planning notes, but it
+  does not prove who wrote each file."
+- "The evidence does not show whether Copilot, ChatGPT, Claude, or Gemini
+  directly created any specific file."
+- "The supplied evidence supports a collaboration pattern, but not a
+  contribution percentage."
 
 Avoid:
 
