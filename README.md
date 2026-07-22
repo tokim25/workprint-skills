@@ -14,6 +14,10 @@ privacy, and attribution boundaries.
 - Blocks obvious secrets, credentials, dependency folders, build output, and
   generated caches.
 - Produces evidence-linked insights, unknowns, and follow-up questions.
+- Uses the AI Fluency 4D lens where evidence supports it: Delegation,
+  Description, Discernment, and Diligence.
+- Supports user-approved long-chat summaries as summary evidence without
+  pretending the full chat history was processed.
 - Keeps every claim tied to evidence IDs.
 - Refuses authorship, ownership, effort, contribution, intent, and
   human-versus-AI percentage claims unless direct evidence supports the exact
@@ -68,3 +72,18 @@ python workprint-investigator/scripts/build_evidence_packet.py /path/to/project
 
 The script writes JSON to stdout. Claude should reason from that evidence
 packet, not from unrestricted project access.
+
+## Current Workprint Guardrails
+
+- The first supported insight must tell the user what they did or where human
+  judgment, review, direction, correction, or sequencing appears.
+- The first insight may also describe what AI/tooling appears to have done, how
+  work moved from idea to implementation, or what the evidence cannot separate.
+- A first insight that only names evidence sources is not enough.
+- Confidence is qualitative: High, Moderate, Limited, Low, or Unknown.
+- A bounded evidence packet means selected excerpts and metadata, not the whole
+  project folder or full chat history.
+- User-approved chat summaries are useful context, but they are summary
+  evidence rather than direct transcripts.
+- When naming the AI Fluency 4D lens, credit Anthropic Academy and the
+  framework authors.

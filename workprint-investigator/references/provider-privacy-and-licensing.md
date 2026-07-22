@@ -49,5 +49,12 @@ permissions when the material is not clearly the user's own.
 
 Prefer bounded evidence packets over broad file dumps.
 
+In plain terms, a bounded evidence packet means Claude receives selected
+excerpts and metadata from the evidence the user approved, not the user's whole
+project folder or complete chat history.
+
 Do not request secrets, credentials, private keys, tokens, certificates,
 environment files, or whole dependency/build/cache folders.
+
+When using user-approved chat summaries, say clearly that the summary adds
+context without sending or proving the entire underlying chat.

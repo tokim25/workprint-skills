@@ -6,9 +6,10 @@ description: Use this skill whenever the user wants Claude to analyze a project 
 # Workprint Investigator
 
 Use this skill to turn bounded project evidence into careful, evidence-linked
-insights. Workprint's product promise is:
+insights. Workprint's current product promise is:
 
-"Turn project evidence into AI-assisted insights you can inspect."
+"Workprint shows what you contributed, what AI contributed, how you worked
+together, and what the evidence cannot determine."
 
 The skill should feel like an investigative companion: calm, precise,
 evidence-driven, and respectful of uncertainty.
@@ -36,10 +37,11 @@ is needed beyond saying the output is based on sample evidence.
    run `scripts/build_evidence_packet.py` on that folder.
 4. If no local folder is available, build a small evidence packet from pasted
    or attached material.
-5. Produce a first supported insight before deeper analysis.
-6. For every claim, show why the evidence supports it.
-7. Preserve unknowns instead of filling gaps.
-8. Recommend the next evidence to add.
+5. State what the evidence packet includes and what it leaves out.
+6. Produce a first supported insight before deeper analysis.
+7. For every claim, show why the evidence supports it.
+8. Preserve unknowns instead of filling gaps.
+9. Recommend the next evidence to add.
 
 ## Evidence Packet Script
 
@@ -51,6 +53,11 @@ python workprint-investigator/scripts/build_evidence_packet.py /path/to/project
 
 The script is intentionally conservative. It reads allowlisted documentation
 and manifest files, blocks sensitive paths, and produces bounded excerpts.
+
+It may include user-approved chat summaries when they are explicitly marked as
+Workprint summary evidence. A summary is useful context, but it is not a full
+transcript and must never be described as though the entire chat history was
+processed.
 
 If the script cannot run, continue with the evidence supplied in the chat and
 say what was unavailable.
@@ -87,17 +94,33 @@ What Workprint cannot determine:
 
 Keep the first insight generous and understandable. It should be one sentence,
 90-160 characters, and specific enough that the user immediately understands
-what Workprint noticed. Do not open with a dense dashboard, raw file list, or
-implementation explanation.
+what Workprint noticed about the work.
+
+The first insight is required to tell the user what they did, or where human
+judgment, review, direction, correction, or sequencing appears in the evidence.
+It may also include one of these, when supported:
+
+- what AI or tooling appears to have done;
+- how the work moved from idea to implementation;
+- what the evidence cannot separate.
+
+Do not open with a dense dashboard, raw file list, implementation explanation,
+or a claim that only says what evidence exists. A claim that merely names
+sources, files, logs, caches, or repositories is not an insight.
 
 Good first insight:
 
-> The project evidence describes an aggregated project made from related
-> prototypes, notes, and implementation records.
+> The user repeatedly narrowed scope and approval criteria while AI-assisted
+> implementation moved the project forward.
 
 Too vague:
 
 > Workprint found evidence.
+
+Not an insight:
+
+> Claude Desktop chat cache indicates that conversational AI tools were
+> available and used on the development system.
 
 Too long:
 
@@ -118,6 +141,24 @@ Good evidence-linked finding:
 Only say "the user appears" or "the AI agent appears" when the evidence itself
 contains user/assistant turns, tool-use records, commits, or notes that support
 that role. If role evidence is absent, say that role remains unknown.
+
+## AI Fluency Lens
+
+When the evidence supports it, organize deeper insights with the AI Fluency
+4D lens:
+
+- Delegation: how the user assigned work, set constraints, or chose what AI
+  should handle.
+- Description: how clearly the user described goals, context, acceptance
+  criteria, or desired outputs.
+- Discernment: where the user reviewed, questioned, corrected, accepted, or
+  rejected AI output.
+- Diligence: how the user checked evidence, preserved boundaries, tested
+  results, or handled uncertainty.
+
+Credit this lens as part of the AI Fluency framework from Anthropic Academy
+and its framework authors when naming it in a formal report. Use it as a
+descriptive lens, not as a scorecard. Do not grade the user.
 
 ## Claim Rules
 
@@ -140,6 +181,9 @@ Allowed:
   directly created any specific file."
 - "The supplied evidence supports a collaboration pattern, but not a
   contribution percentage."
+- "A user-approved chat summary reports that the user rejected the first
+  implementation plan; because the full transcript is not present, Workprint
+  treats that as summary evidence rather than direct conversation evidence."
 
 Avoid:
 
@@ -151,6 +195,30 @@ Avoid:
 
 Never calculate human-versus-AI percentages.
 
+## User-Approved Chat Summaries
+
+Workprint may receive long-chat summaries prepared or approved by the user.
+Treat them as a distinct evidence type:
+
+- They can provide useful context about long conversations that were not fully
+  sent.
+- They do not prove the full chat history.
+- They do not prove authorship, ownership, effort, or contribution share.
+- They should be cited as summary evidence, not as a direct transcript.
+- If the summary says it was user-approved, say that the user approved the
+  summary for Workprint; do not say Workprint verified every underlying turn.
+
+Useful prompt to give users:
+
+> Summarize this chat for Workprint as user-approved evidence. Focus on what I
+> directed, decided, reviewed, sequenced, corrected, or rejected; what AI or
+> tooling appears to have done; how the work moved from idea to implementation;
+> and what this summary cannot prove because it is not the full transcript.
+
+If a user wants fuller context, recommend adding approved summaries from older
+or longer chats instead of pretending the bounded packet contains the whole
+history.
+
 ## References
 
 Read `references/evidence-boundaries.md` when making claims, confidence
@@ -159,3 +227,6 @@ statements, or unknowns.
 Read `references/provider-privacy-and-licensing.md` when the user asks about
 privacy, uploading evidence, Claude processing, permissions, licensing, or
 whether it is safe to use the skill on real project material.
+
+Read `references/ai-fluency-lens.md` when using Delegation, Description,
+Discernment, or Diligence language.

@@ -4,19 +4,31 @@
     {
       "id": 1,
       "prompt": "Use Workprint on this local project folder and tell me what the evidence supports, what remains unknown, and what I should add next.",
-      "expected_output": "A Workprint-style report with a first supported insight, evidence IDs, unknowns, and a permission/privacy boundary before processing local evidence.",
+      "expected_output": "A Workprint-style report with a permission/privacy boundary, a first supported insight about user action or human judgment, evidence IDs, qualitative confidence, unknowns, and next evidence to add.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "Here are three README excerpts from related prototypes. Summarize what Workprint can responsibly say about the project.",
-      "expected_output": "A cautious synthesis that cites the provided excerpts and avoids authorship, effort, ownership, contribution, and AI-involvement claims.",
+      "expected_output": "A cautious synthesis that cites the provided excerpts, avoids authorship, effort, ownership, contribution, and unsupported AI-involvement claims, and does not treat a file inventory as a first insight.",
       "files": []
     },
     {
       "id": 3,
       "prompt": "Can Workprint prove I built most of this project from these commits and files?",
       "expected_output": "A refusal to prove contribution share, with a useful explanation of what commits and files can and cannot support.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I have a long Claude chat that I cannot paste fully. How should I summarize it for Workprint?",
+      "expected_output": "A user-facing prompt for creating a user-approved chat summary, plus a disclosure that the summary is useful context but not the full transcript.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "Use the AI Fluency 4D lens to explain how I worked with AI in this evidence.",
+      "expected_output": "A cautious use of Delegation, Description, Discernment, and Diligence as evidence-backed descriptive lenses, with credit to Anthropic Academy and the framework authors when named, and no grades or percentages.",
       "files": []
     }
   ]

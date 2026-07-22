@@ -129,7 +129,7 @@ def main() -> int:
         evidence.append(
             {
                 "id": evidence_id,
-                "source": "project-file",
+                "source": evidence_source(text),
                 "path": relative,
                 "name": path.name,
                 "extension": path.suffix.lower(),
@@ -218,6 +218,15 @@ def read_text(path: Path) -> str | None:
             return None
     except OSError:
         return None
+
+
+def evidence_source(text: str) -> str:
+    head = text[:2_000].lower()
+    if "workprint-source: chat-summary" in head:
+        return "chat-summary"
+    if '"workprint_source"' in head and '"chat-summary"' in head:
+        return "chat-summary"
+    return "project-file"
 
 
 def bounded_excerpt(text: str) -> str:
