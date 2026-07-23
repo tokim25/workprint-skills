@@ -36,24 +36,32 @@ MANIFEST_NAMES = {
 }
 
 BLOCKED_DIRECTORIES = {
+    ".build-venv",
     ".cache",
+    ".eggs",
     ".git",
+    ".mypy_cache",
     ".next",
     ".nuxt",
     ".parcel-cache",
     ".pytest_cache",
+    ".ruff_cache",
     ".svelte-kit",
+    ".tox",
     ".turbo",
+    ".venv",
     "__pycache__",
     "bower_components",
     "build",
     "coverage",
     "dist",
+    "htmlcov",
     "node_modules",
     "out",
     "target",
     "tmp",
     "vendor",
+    "venv",
 }
 
 SENSITIVE_TERMS = {
