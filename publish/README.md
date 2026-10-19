@@ -21,13 +21,26 @@ Open the printed link in a browser.
 ## Tests
 
 ```bash
-node --test publish/tests/publish.test.mjs
+node --test publish/tests/publish.test.mjs publish/tests/handlers.test.mjs
 python3 -m unittest discover -s publish/tests -p 'test_*.py'
 ```
 
+## Production build (written, not deployed)
+
+`publish/` is a Vercel project: static pages in `web/`, functions in `api/`, storage in a private Vercel Blob store, and a daily cron that deletes expired reports. `vercel.json` sets a strict content security policy (no inline scripts, no third-party requests), no-referrer and noindex headers.
+
+To deploy, someone with the Vercel account needs to:
+1. Create the project with `publish/` as the root directory.
+2. Create a Blob store and connect it to the project, which sets `BLOB_READ_WRITE_TOKEN`.
+3. Set `CRON_SECRET` to a long random value.
+4. Put the live publish URL into `DEFAULT_BASE` in `build_publish_link.py` and its copy in `chatgpt-custom-gpt/knowledge/`.
+
+The Blob adapter has not run against a real store yet. The handler logic is tested with an in-memory store.
+
+Vercel keeps its own request logs, which can include IP addresses. Workprint stores none, but the platform may. Say so in any privacy notice.
+
 ## Not built yet
 
-- Skill and GPT instructions that produce the report JSON and call the link script.
-- Production hosting and storage. The dev server keeps files on disk.
-- Rate limiting, abuse reporting and an expiry cleanup job.
+- A live deployment.
+- Rate limiting and abuse reporting.
 - A measured link length in the real Claude and ChatGPT interfaces. The sample report makes a 1,466-character link.

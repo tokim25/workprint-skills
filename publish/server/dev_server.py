@@ -23,7 +23,19 @@ def _hash(token: str) -> str:
     return hashlib.sha256(token.encode()).hexdigest()
 
 
+SECURITY_HEADERS = [
+    (h["key"], h["value"])
+    for rule in json.loads((WEB.parent / "vercel.json").read_text())["headers"]
+    for h in rule["headers"]
+]
+
+
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):  # same headers the deployment sends, so dev matches production
+        for k, v in SECURITY_HEADERS:
+            self.send_header(k, v)
+        super().end_headers()
+
     def log_message(self, *args):  # no request logging: no IPs written anywhere
         pass
 
