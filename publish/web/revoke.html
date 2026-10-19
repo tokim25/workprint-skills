@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Delete a Workprint</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1 class="page">Delete this Workprint</h1>
+  <p>The share link will stop working immediately. This cannot be undone.</p>
+  <button id="go">Delete report</button>
+  <p id="out" class="note" role="status"></p>
+</main>
+<script type="module">
+const [id, token] = location.hash.slice(1).split(".");
+document.getElementById("go").addEventListener("click", async () => {
+  const out = document.getElementById("out");
+  if (!id || !token) { out.textContent = "This link is incomplete."; return; }
+  const res = await fetch(`api/reports/${encodeURIComponent(id)}`, { method: "DELETE", headers: { "x-delete-token": token } });
+  out.textContent = res.ok ? "Deleted." : "Could not delete. It may already be gone.";
+});
+</script>
+</body>
+</html>

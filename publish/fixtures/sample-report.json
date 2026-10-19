@@ -1,0 +1,33 @@
+{
+  "v": 1,
+  "title": "Sample project: pricing page redesign (fictional)",
+  "platform": "claude",
+  "created": "2026-10-19",
+  "first_insight": {
+    "text": "The user narrowed scope twice and rejected the first layout, while the AI drafted copy and code the user then reviewed.",
+    "evidence": ["CHAT-002", "CHAT-005", "GIT-001"],
+    "confidence": "moderate",
+    "why": "Two chat turns show scope being narrowed and one shows a draft being rejected, and commits follow each decision."
+  },
+  "findings": [
+    {"text": "The user set the acceptance criteria (three tiers, no annual toggle) before any implementation began.", "evidence": ["CHAT-001", "NOTE-001"]},
+    {"text": "The user rejected the first layout and asked for a simpler comparison table, after which the AI produced a revised version.", "evidence": ["CHAT-005"]},
+    {"text": "Commits touching the pricing page follow each approved draft within the same day, which fits a review-then-commit sequence.", "evidence": ["GIT-001", "GIT-002"]},
+    {"text": "Copy for the free tier was changed by the user after the AI's draft, as shown by a later commit message.", "evidence": ["GIT-003"]},
+    {"text": "The notes file records a decision to defer billing integration, with the reason stated.", "evidence": ["NOTE-001"]}
+  ],
+  "unknowns": [
+    "Whether any decisions were made in meetings or messages outside the supplied evidence.",
+    "Who wrote each individual line of code. Commits show what changed, not who typed it.",
+    "Whether the design tool was used. No design file was supplied."
+  ],
+  "evidence": [
+    {"id": "CHAT-001", "label": "Chat with Claude, opening request", "date": "2026-09-02", "excerpt": "I want three tiers and no annual toggle. The page should load fast and the comparison should fit on one screen.", "show_excerpt": true},
+    {"id": "CHAT-002", "label": "Chat with Claude, scope change", "date": "2026-09-03", "excerpt": "Drop the testimonials section for now. We only need pricing and the comparison.", "show_excerpt": true},
+    {"id": "CHAT-005", "label": "Chat with Claude, layout feedback", "date": "2026-09-05", "excerpt": "This layout is too busy. Make the comparison a plain table and remove the icons.", "show_excerpt": false},
+    {"id": "GIT-001", "label": "Commit: add pricing page with three tiers", "date": "2026-09-03"},
+    {"id": "GIT-002", "label": "Commit: replace cards with comparison table", "date": "2026-09-05"},
+    {"id": "GIT-003", "label": "Commit: rewrite free tier copy", "date": "2026-09-06", "excerpt": "Rewrite free tier copy; the draft overpromised support.", "show_excerpt": true},
+    {"id": "NOTE-001", "label": "Project notes, decisions", "date": "2026-09-04", "excerpt": "Decision: defer billing integration until the page ships. Reason: scope.", "show_excerpt": true}
+  ]
+}

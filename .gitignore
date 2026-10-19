@@ -4,3 +4,5 @@ __pycache__/
 .pytest_cache/
 workprint-output/
 *.local.json
+publish/server/data/
+__pycache__/

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<title>Publish a Workprint</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1 class="page">Publish a Workprint</h1>
+  <p class="note">Nothing has been uploaded yet. Your report is read in this browser tab only. Excerpts stay private unless you switch them on below.</p>
+
+  <section id="paste" hidden>
+    <p>Paste the report your assistant produced.</p>
+    <textarea id="input" rows="8" placeholder="Paste report JSON here"></textarea>
+    <button id="load">Preview</button>
+  </section>
+
+  <p id="errors" class="errors" role="alert"></p>
+
+  <section id="preview" hidden>
+    <h2 class="label">This is exactly what a reader will see</h2>
+    <article id="report" class="report"></article>
+
+    <section class="options">
+      <label>Link expires after
+        <select id="expiry"><option value="7">7 days</option><option value="30" selected>30 days</option><option value="90">90 days</option></select>
+      </label>
+      <p class="note">Check that nothing here includes other people's names or employer or client material you do not have permission to share.</p>
+      <button id="publish">Publish private link</button>
+    </section>
+  </section>
+
+  <section id="done" hidden>
+    <h2>Published</h2>
+    <p>Share this link. Anyone who has it can read the report.</p>
+    <input id="share" readonly>
+    <p>Keep this one private. It deletes the report.</p>
+    <input id="revoke" readonly>
+    <p class="note">The report is encrypted before upload. The key is in the share link and is never sent to Workprint.</p>
+  </section>
+</main>
+<script type="module">
+import { decodeReportInput, validateReport, stripHiddenExcerpts, encryptReport, renderReport } from "./workprint.js";
+
+const $ = (id) => document.getElementById(id);
+let report = null;
+
+function show(r) {
+  const errs = validateReport(r);
+  $("errors").textContent = errs.join(" ");
+  if (errs.length) return;
+  report = r;
+  $("paste").hidden = true;
+  $("preview").hidden = false;
+  renderReport(document, $("report"), report, {
+    preview: true,
+    onToggle: (id, on) => { report.evidence.find((e) => e.id === id).show_excerpt = on; },
+  });
+}
+
+async function load(text) {
+  try { show(await decodeReportInput(text)); }
+  catch { $("errors").textContent = "That does not look like a Workprint report."; $("paste").hidden = false; }
+}
+
+$("load").addEventListener("click", () => load($("input").value));
+if (location.hash.length > 1) {
+  load(location.hash);
+  history.replaceState(null, "", location.pathname); // keep the report out of history
+} else $("paste").hidden = false;
+
+$("publish").addEventListener("click", async () => {
+  $("publish").disabled = true;
+  try {
+    const enc = await encryptReport(stripHiddenExcerpts(report));
+    const res = await fetch("api/reports", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ ciphertext: enc.ciphertext, iv: enc.iv, expires_days: Number($("expiry").value) }),
+    });
+    if (!res.ok) throw new Error();
+    const { id, delete_token } = await res.json();
+    const base = new URL(".", location.href).href;
+    $("share").value = `${base}view.html#${id}.${enc.key}`;
+    $("revoke").value = `${base}revoke.html#${id}.${delete_token}`;
+    $("preview").hidden = true; $("done").hidden = false;
+  } catch {
+    $("errors").textContent = "Publishing failed. Nothing was shared. Try again.";
+    $("publish").disabled = false;
+  }
+});
+</script>
+</body>
+</html>
