@@ -16,7 +16,7 @@ import zlib
 PERCENT = re.compile(r"\d+(\.\d+)?\s*(%|percent\b)", re.I)
 SCORING = re.compile(r"\b(score[sd]?|scoring|grade[sd]?|grading)\b", re.I)
 MAX_REPORT_CHARS = 60000
-DEFAULT_BASE = "http://127.0.0.1:8765/publish.html"
+DEFAULT_BASE = "https://workprint-publish.vercel.app/publish.html"
 LONG_LINK = 8000
 
 
