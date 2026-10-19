@@ -41,6 +41,20 @@ class ScriptTests(unittest.TestCase):
         self.assertTrue(link.startswith(bpl.DEFAULT_BASE + "#"))
 
 
+class BundleSyncTests(unittest.TestCase):
+    """The ChatGPT bundle carries copies of these files. They must not drift."""
+
+    def test_gpt_copies_match_skill(self):
+        gpt = ROOT / "chatgpt-custom-gpt" / "knowledge"
+        skill = ROOT / "workprint-investigator"
+        for name, src in (("build_publish_link.py", skill / "scripts"), ("report-format.md", skill / "references")):
+            self.assertEqual((gpt / name).read_text(), (src / name).read_text(), name)
+
+    def test_gpt_instructions_fit_the_builder_limit(self):
+        text = (ROOT / "chatgpt-custom-gpt" / "instructions.md").read_text().split("\n---\n", 1)[1]
+        self.assertLess(len(text), 8000)
+
+
 class ServerTests(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()

@@ -219,6 +219,21 @@ If a user wants fuller context, recommend adding approved summaries from older
 or longer chats instead of pretending the bounded packet contains the whole
 history.
 
+## Publishing
+
+Offer to publish only after giving the insight, and only if the user wants to
+share it. Publishing makes a private, encrypted link. Nothing is uploaded until
+the user clicks Publish in their own browser, after seeing a preview.
+
+1. Ask which excerpts, if any, readers may see. The default is none.
+2. Write the report in the JSON format in `references/report-format.md`.
+3. Run `scripts/build_publish_link.py` on it and give the user the link.
+4. Tell the user the link opens a preview, and that the creator controls expiry
+   and can delete the report.
+
+The publish page rejects reports with uncited claims, percentages or scoring
+language, so write them to the same rules as everything else here.
+
 ## References
 
 Read `references/evidence-boundaries.md` when making claims, confidence
@@ -230,3 +245,5 @@ whether it is safe to use the skill on real project material.
 
 Read `references/ai-fluency-lens.md` when using Delegation, Description,
 Discernment, or Diligence language.
+
+Read `references/report-format.md` when the user wants to share or publish a Workprint.

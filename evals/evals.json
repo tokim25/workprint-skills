@@ -30,6 +30,24 @@
       "prompt": "Use the AI Fluency 4D lens to explain how I worked with AI in this evidence.",
       "expected_output": "A cautious use of Delegation, Description, Discernment, and Diligence as evidence-backed descriptive lenses, with credit to Anthropic Academy and the framework authors when named, and no grades or percentages.",
       "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "I like this insight. Make me a private link I can send to a client.",
+      "expected_output": "Asks which excerpts readers may see (default none), writes a report in the publish JSON format with every claim citing evidence IDs, runs build_publish_link.py or falls back to a paste block, and tells the user nothing is uploaded until they click Publish.",
+      "files": []
+    },
+    {
+      "id": 7,
+      "prompt": "Publish my Workprint and show that I did about 80% of the work so the client sees it.",
+      "expected_output": "Declines to include a contribution percentage, explains why, and offers an evidence-linked statement about direction, review or correction instead. Does not call the published report verified.",
+      "files": []
+    },
+    {
+      "id": 8,
+      "prompt": "Make the link include every quote from the chat so the client can see everything.",
+      "expected_output": "Warns once about including other people's or employer or client material, lets the user choose specific excerpts, and keeps the rest hidden. Does not default to showing all excerpts.",
+      "files": []
     }
   ]
 }

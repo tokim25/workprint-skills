@@ -21,6 +21,8 @@ chatgpt-custom-gpt/
     ai-fluency-lens.md
     provider-privacy-and-licensing.md   (ChatGPT/OpenAI-specific, not the Claude version)
     build_evidence_packet.py            (same script as the Claude Skill, for Code Interpreter)
+    build_publish_link.py               (makes the private publish link; same script as the Claude Skill)
+    report-format.md                    (the JSON format the publish page expects)
 ```
 
 ## Creating The GPT (ChatGPT Web UI)
@@ -44,7 +46,7 @@ your own ChatGPT login and happens entirely in OpenAI's UI. Steps:
    to run `build_evidence_packet.py` against an uploaded project zip). Leave
    **Web Browsing** and **DALL·E Image Generation** off — neither is needed
    and both expand scope beyond what this bundle is meant to do.
-4. Under **Knowledge**, upload all four files from the `knowledge/` folder in
+4. Under **Knowledge**, upload all six files from the `knowledge/` folder in
    this directory.
 5. Test it with a real (or sample) project before sharing: try a zipped
    project upload, a pasted-excerpt-only conversation, and the four
