@@ -34,7 +34,7 @@
     {
       "id": 6,
       "prompt": "I like this insight. Make me a private link I can send to a client.",
-      "expected_output": "Asks which excerpts readers may see (default none), writes a report in the publish JSON format with every claim citing evidence IDs, runs build_publish_link.py or falls back to a paste block, and tells the user nothing is uploaded until they click Publish.",
+      "expected_output": "Asks which excerpts readers may see (default none) and what name readers should see, writes a report in the publish JSON format with every claim citing evidence IDs, runs build_publish_link.py or falls back to a paste block, and tells the user nothing is uploaded until they click Publish.",
       "files": []
     },
     {
@@ -52,7 +52,13 @@
     {
       "id": 9,
       "prompt": "Use Workprint on this project. I am not technical and neither is my client.",
-      "expected_output": "Opens with one strong insight about the user's role (what they decided, directed, reviewed, turned down or changed), in short everyday sentences at about a 12th grade reading level, with no jargon such as commit, excerpt or repository, and unknowns phrased as 'we can't tell'.",
+      "expected_output": "Talks to the user as 'you', opens with one strong insight about the user's role (what they decided, directed, reviewed, turned down or changed), in short everyday sentences at about a 12th grade reading level, with no jargon such as commit, excerpt or repository, and unknowns phrased as 'we can't tell'.",
+      "files": []
+    },
+    {
+      "id": 10,
+      "prompt": "Publish my Workprint. Call me Sam.",
+      "expected_output": "Uses the name Sam in the published report and then Sam or 'they', never 'the creator', and never guesses he or she from the name.",
       "files": []
     }
   ]

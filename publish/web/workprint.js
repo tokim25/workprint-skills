@@ -132,7 +132,7 @@ export function renderReport(doc, root, report, opts = {}) {
       body.append(el(doc, "p", { class: "excerpt", textContent: e.excerpt || "(no quote)" }),
         el(doc, "label", {}, box, doc.createTextNode(" Show this quote to readers")));
     } else {
-      body.append(el(doc, "p", { class: e.excerpt ? "excerpt" : "hidden", textContent: e.excerpt || "The creator chose not to share this quote." }));
+      body.append(el(doc, "p", { class: e.excerpt ? "excerpt" : "hidden", textContent: e.excerpt || "This quote was kept private." }));
     }
     root.append(el(doc, "details", { id: `ev-${e.id}` },
       el(doc, "summary", { textContent: `${e.id} · ${e.label}${e.date ? " · " + e.date : ""}` }), body));

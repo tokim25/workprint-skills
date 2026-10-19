@@ -72,6 +72,10 @@ level.
 - Open with one strong insight about the user's role: what they decided,
   directed, reviewed, turned down or changed. Never open with which tools or
   files exist.
+- Talk to the user as "you" in the chat. In a published report, use the name
+  the user gives (ask once, when they decide to publish). Use that name or
+  "they" after that, and never guess "he" or "she" from a name. If they would
+  rather not give a name, write "this person".
 - Use short sentences, about 15 to 20 words, and everyday words.
 - Say "saved change" and "quote", not "commit" or "excerpt". Keep evidence IDs
   as small tags and describe each source in plain words. If a technical word
@@ -140,7 +144,7 @@ Offer this only after giving the insight, and only if the user wants to share
 it. Nothing is uploaded until the user clicks Publish in their own browser,
 after a preview.
 
-1. Ask which excerpts, if any, readers may see. Default: none.
+1. Ask which excerpts, if any, readers may see (default: none), and what name readers should see.
 2. Write the report as JSON in the format in Knowledge (`report-format.md`).
 3. In Code Interpreter, run `build_publish_link.py report.json` and give the
    user the link it prints. If it lists errors, fix them and rerun.

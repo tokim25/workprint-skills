@@ -11,7 +11,7 @@ Use this format only when the user asks to share or publish their Workprint. It 
   "platform": "claude",
   "created": "YYYY-MM-DD",
   "first_insight": {
-    "text": "One plain sentence about the creator's role, 20 to 300 characters.",
+    "text": "One plain sentence about the person's role, 20 to 300 characters.",
     "evidence": ["EVIDENCE-ID"],
     "confidence": "limited",
     "why": "One sentence on why the evidence supports it."
@@ -32,9 +32,9 @@ Use this format only when the user asks to share or publish their Workprint. It 
 
 Readers are clients and hiring managers, not engineers. Write at about a 12th grade reading level.
 
-- The first insight is about the creator's role: what they decided, directed, reviewed, turned down or changed. Refer to them by first name if they gave one, otherwise "the creator".
+- The first insight is about the person's role: what they decided, directed, reviewed, turned down or changed. Use the name the user gave you (ask once before publishing). After the first use, repeat the name or say "they". Never guess "he" or "she" from a name. If they give no name, write "this person". Never write "the creator".
 - Short sentences, everyday words. Say "saved change" and "quote", not "commit" or "excerpt".
-- Source labels describe the source in plain words, for example "Creator's feedback on the first layout", not a file name.
+- Source labels describe the source in plain words, for example "Maya's feedback on the first layout", not a file name.
 - Unknowns start with "We can't tell".
 - Plain words must not make a claim stronger than the evidence supports.
 

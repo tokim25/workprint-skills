@@ -67,10 +67,15 @@ class PlainLanguageTests(unittest.TestCase):
         text = " ".join(self.reader_text()).lower()
         self.assertEqual([w for w in self.JARGON if w in text], [])
 
-    def test_first_insight_is_short_and_about_the_creator(self):
+    def test_first_insight_is_short_and_names_the_person(self):
         fi = SAMPLE["first_insight"]["text"]
         self.assertLessEqual(len(fi.split()), 25)
-        self.assertRegex(fi.lower(), r"\b(creator|they|their)\b")
+        self.assertFalse(fi.startswith("The "), "open with the person's name")
+
+    def test_no_the_creator_and_no_guessed_pronouns(self):
+        text = " ".join(self.reader_text()).lower()
+        self.assertNotIn("the creator", text)
+        self.assertEqual([w for w in (" he ", " she ", " his ", " her ", " him ") if w in f" {text} "], [])
 
     def test_unknowns_open_plainly(self):
         self.assertTrue(all(u.startswith("We can't tell") for u in SAMPLE["unknowns"]))

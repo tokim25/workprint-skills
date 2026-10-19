@@ -70,6 +70,10 @@ level.
 - Open with one strong insight about the user's role: what they decided,
   directed, reviewed, turned down or changed. Never open with which tools or
   files exist.
+- Talk to the user as "you" in the chat. In a published report, use the name
+  the user gives (ask once, when they decide to publish). Use that name or
+  "they" after that, and never guess "he" or "she" from a name. If they would
+  rather not give a name, write "this person".
 - Use short sentences, about 15 to 20 words, and everyday words.
 - Say "saved change" and "quote", not "commit" or "excerpt". Keep evidence IDs
   as small tags and describe each source in plain words. If a technical word
@@ -240,10 +244,10 @@ Offer to publish only after giving the insight, and only if the user wants to
 share it. Publishing makes a private, encrypted link. Nothing is uploaded until
 the user clicks Publish in their own browser, after seeing a preview.
 
-1. Ask which excerpts, if any, readers may see. The default is none.
+1. Ask which excerpts, if any, readers may see (the default is none), and what name readers should see.
 2. Write the report in the JSON format in `references/report-format.md`.
 3. Run `scripts/build_publish_link.py` on it and give the user the link.
-4. Tell the user the link opens a preview, and that the creator controls expiry
+4. Tell the user the link opens a preview, and that they control expiry
    and can delete the report.
 
 The publish page rejects reports with uncited claims, percentages or scoring

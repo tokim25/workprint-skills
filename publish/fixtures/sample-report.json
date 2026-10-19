@@ -4,24 +4,24 @@
   "platform": "claude",
   "created": "2026-10-19",
   "first_insight": {
-    "text": "The creator steered this project: they set firm limits, turned down a first design, and chose what to put off.",
+    "text": "Maya steered this project by setting firm limits, turning down a first design, and choosing what to put off.",
     "evidence": [
       "CHAT-001",
       "CHAT-005",
       "NOTE-001"
     ],
     "confidence": "moderate",
-    "why": "Their own messages set the limits and reject the first layout, and their notes say what to put off."
+    "why": "Maya's own messages set the limits and reject the first layout, and the project notes say what to put off."
   },
   "findings": [
     {
-      "text": "Before any work began, the creator said what the page had to do: three price plans, no yearly toggle, and everything visible on one screen.",
+      "text": "Before any work began, Maya said what the page had to do: three price plans, no yearly toggle, and everything visible on one screen.",
       "evidence": [
         "CHAT-001"
       ]
     },
     {
-      "text": "The creator turned down the first layout as too busy and asked for a plain table. The AI then made a simpler version.",
+      "text": "Maya turned down the first layout as too busy and asked for a plain table. The AI then made a simpler version.",
       "evidence": [
         "CHAT-005",
         "GIT-002"
@@ -35,7 +35,7 @@
       ]
     },
     {
-      "text": "The creator rewrote the free plan wording after the AI's draft. A later note says the draft promised too much support.",
+      "text": "Maya rewrote the free plan wording after the AI's draft. A later note says the draft promised too much support.",
       "evidence": [
         "GIT-003"
       ]
@@ -55,21 +55,21 @@
   "evidence": [
     {
       "id": "CHAT-001",
-      "label": "Creator's opening request to Claude",
+      "label": "Maya's opening request to Claude",
       "date": "2026-09-02",
       "excerpt": "I want three tiers and no annual toggle. The page should load fast and the comparison should fit on one screen.",
       "show_excerpt": true
     },
     {
       "id": "CHAT-002",
-      "label": "Creator's message cutting a section",
+      "label": "Maya's message cutting a section",
       "date": "2026-09-03",
       "excerpt": "Drop the testimonials section for now. We only need pricing and the comparison.",
       "show_excerpt": true
     },
     {
       "id": "CHAT-005",
-      "label": "Creator's feedback on the first layout",
+      "label": "Maya's feedback on the first layout",
       "date": "2026-09-05",
       "excerpt": "This layout is too busy. Make the comparison a plain table and remove the icons.",
       "show_excerpt": false
