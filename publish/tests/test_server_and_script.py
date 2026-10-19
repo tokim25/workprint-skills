@@ -41,6 +41,41 @@ class ScriptTests(unittest.TestCase):
         self.assertTrue(link.startswith(bpl.DEFAULT_BASE + "#"))
 
 
+def _grade(text):
+    """Flesch-Kincaid grade level with a simple syllable guess."""
+    import re
+    words = re.findall(r"[A-Za-z']+", text)
+    sentences = max(1, len(re.findall(r"[.!?]+(?:\s|$)", text)))
+    syll = sum(max(1, len(re.findall(r"[aeiouy]+", w.lower())) - (1 if w.lower().endswith("e") else 0)) for w in words)
+    return 0.39 * len(words) / sentences + 11.8 * syll / len(words) - 15.59
+
+
+class PlainLanguageTests(unittest.TestCase):
+    JARGON = ("commit", "excerpt", "repository", "repo ", "api", "json", "hash", "endpoint")
+
+    def reader_text(self):
+        r = SAMPLE
+        parts = [r["first_insight"]["text"], r["first_insight"]["why"]]
+        parts += [f["text"] for f in r["findings"]] + r["unknowns"] + [e["label"] for e in r["evidence"]]
+        return parts
+
+    def test_reads_at_or_below_12th_grade(self):
+        grade = _grade(" ".join(self.reader_text()))
+        self.assertLessEqual(grade, 12, f"reading grade {grade:.1f}")
+
+    def test_no_engineering_jargon_in_reader_text(self):
+        text = " ".join(self.reader_text()).lower()
+        self.assertEqual([w for w in self.JARGON if w in text], [])
+
+    def test_first_insight_is_short_and_about_the_creator(self):
+        fi = SAMPLE["first_insight"]["text"]
+        self.assertLessEqual(len(fi.split()), 25)
+        self.assertRegex(fi.lower(), r"\b(creator|they|their)\b")
+
+    def test_unknowns_open_plainly(self):
+        self.assertTrue(all(u.startswith("We can't tell") for u in SAMPLE["unknowns"]))
+
+
 class BundleSyncTests(unittest.TestCase):
     """The ChatGPT bundle carries copies of these files. They must not drift."""
 

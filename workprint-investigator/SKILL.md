@@ -62,6 +62,21 @@ processed.
 If the script cannot run, continue with the evidence supplied in the chat and
 say what was unavailable.
 
+## Plain Language
+
+Write for a smart reader who is not an engineer, at about a 12th grade reading
+level.
+
+- Open with one strong insight about the user's role: what they decided,
+  directed, reviewed, turned down or changed. Never open with which tools or
+  files exist.
+- Use short sentences, about 15 to 20 words, and everyday words.
+- Say "saved change" and "quote", not "commit" or "excerpt". Keep evidence IDs
+  as small tags and describe each source in plain words. If a technical word
+  cannot be avoided, explain it in a few words the first time.
+- Say "we can't tell" instead of "the evidence does not support".
+- Plain words must never make a claim stronger than the evidence supports.
+
 ## Output Shape
 
 Use this structure by default:

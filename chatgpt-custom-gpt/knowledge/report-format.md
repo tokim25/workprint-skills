@@ -11,7 +11,7 @@ Use this format only when the user asks to share or publish their Workprint. It 
   "platform": "claude",
   "created": "YYYY-MM-DD",
   "first_insight": {
-    "text": "One sentence, 20 to 300 characters.",
+    "text": "One plain sentence about the creator's role, 20 to 300 characters.",
     "evidence": ["EVIDENCE-ID"],
     "confidence": "limited",
     "why": "One sentence on why the evidence supports it."
@@ -19,7 +19,7 @@ Use this format only when the user asks to share or publish their Workprint. It 
   "findings": [{"text": "One evidence-linked finding.", "evidence": ["EVIDENCE-ID"]}],
   "unknowns": ["A specific gap, not a generic disclaimer."],
   "evidence": [
-    {"id": "EVIDENCE-ID", "label": "Where it came from", "date": "YYYY-MM-DD", "excerpt": "Short quote.", "show_excerpt": false}
+    {"id": "EVIDENCE-ID", "label": "Plain-words description of the source", "date": "YYYY-MM-DD", "excerpt": "Short quote.", "show_excerpt": false}
   ]
 }
 ```
@@ -27,6 +27,16 @@ Use this format only when the user asks to share or publish their Workprint. It 
 - `platform` is `claude` or `chatgpt`, whichever you are.
 - `confidence` is one of high, moderate, limited, low, unknown.
 - Use the evidence IDs from the evidence packet. Every id cited by the first insight or a finding must appear in `evidence`.
+
+## Writing for readers
+
+Readers are clients and hiring managers, not engineers. Write at about a 12th grade reading level.
+
+- The first insight is about the creator's role: what they decided, directed, reviewed, turned down or changed. Refer to them by first name if they gave one, otherwise "the creator".
+- Short sentences, everyday words. Say "saved change" and "quote", not "commit" or "excerpt".
+- Source labels describe the source in plain words, for example "Creator's feedback on the first layout", not a file name.
+- Unknowns start with "We can't tell".
+- Plain words must not make a claim stronger than the evidence supports.
 
 ## Rules the publish page enforces
 

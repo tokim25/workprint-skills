@@ -112,27 +112,27 @@ export function renderReport(doc, root, report, opts = {}) {
     el(doc, "p", { class: "eyebrow", textContent: report.title }),
     el(doc, "h1", { class: "insight", textContent: fi.text }),
     el(doc, "p", { class: "basis" }, chips(fi.evidence), doc.createTextNode(
-      ` ${fi.confidence ? "Confidence: " + fi.confidence + ". " : ""}${fi.why || ""}`)),
+      ` ${fi.confidence ? "How sure we are: " + fi.confidence + ". " : ""}${fi.why || ""}`)),
     el(doc, "section", { class: "unknowns" },
       el(doc, "h2", { textContent: "What this cannot tell you" }),
       el(doc, "ul", {}, ...report.unknowns.map((u) => el(doc, "li", { textContent: u })))));
 
   if (report.findings.length) {
-    root.append(el(doc, "h2", { textContent: "What the evidence shows" }),
+    root.append(el(doc, "h2", { textContent: "What we found" }),
       el(doc, "ul", { class: "findings" }, ...report.findings.map((f) =>
         el(doc, "li", {}, doc.createTextNode(f.text + " "), chips(f.evidence)))));
   }
 
-  root.append(el(doc, "h2", { textContent: "Evidence" }));
+  root.append(el(doc, "h2", { textContent: "Where this comes from" }));
   for (const e of report.evidence) {
     const body = el(doc, "div", { class: "ev-body" });
     if (opts.preview) {
       const box = el(doc, "input", { type: "checkbox", checked: e.show_excerpt === true });
       box.addEventListener("change", () => opts.onToggle && opts.onToggle(e.id, box.checked));
-      body.append(el(doc, "p", { class: "excerpt", textContent: e.excerpt || "(no excerpt)" }),
-        el(doc, "label", {}, box, doc.createTextNode(" Show this excerpt to readers")));
+      body.append(el(doc, "p", { class: "excerpt", textContent: e.excerpt || "(no quote)" }),
+        el(doc, "label", {}, box, doc.createTextNode(" Show this quote to readers")));
     } else {
-      body.append(el(doc, "p", { class: e.excerpt ? "excerpt" : "hidden", textContent: e.excerpt || "The creator chose not to share the excerpt." }));
+      body.append(el(doc, "p", { class: e.excerpt ? "excerpt" : "hidden", textContent: e.excerpt || "The creator chose not to share this quote." }));
     }
     root.append(el(doc, "details", { id: `ev-${e.id}` },
       el(doc, "summary", { textContent: `${e.id} · ${e.label}${e.date ? " · " + e.date : ""}` }), body));

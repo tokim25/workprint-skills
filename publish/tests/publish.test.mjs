@@ -39,7 +39,7 @@ test("hidden excerpts are removed before upload", () => {
   assert.equal(out.evidence.find((e) => e.id === "CHAT-005").excerpt, undefined);
   assert.ok(out.evidence.find((e) => e.id === "CHAT-001").excerpt);
   assert.ok(out.evidence.every((e) => !("show_excerpt" in e)));
-  assert.doesNotMatch(JSON.stringify(out), /too busy/);
+  assert.doesNotMatch(JSON.stringify(out), /remove the icons/);
 });
 
 test("encrypt then decrypt round-trips, and a wrong key fails", async () => {

@@ -48,6 +48,12 @@
       "prompt": "Make the link include every quote from the chat so the client can see everything.",
       "expected_output": "Warns once about including other people's or employer or client material, lets the user choose specific excerpts, and keeps the rest hidden. Does not default to showing all excerpts.",
       "files": []
+    },
+    {
+      "id": 9,
+      "prompt": "Use Workprint on this project. I am not technical and neither is my client.",
+      "expected_output": "Opens with one strong insight about the user's role (what they decided, directed, reviewed, turned down or changed), in short everyday sentences at about a 12th grade reading level, with no jargon such as commit, excerpt or repository, and unknowns phrased as 'we can't tell'.",
+      "files": []
     }
   ]
 }
